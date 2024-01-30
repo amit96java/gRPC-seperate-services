@@ -1,0 +1,29 @@
+syntax = "proto3";
+option java_multiple_files = true; // to create multiple java files instead one.
+option java_package = "io.amit.user" ;
+
+
+message UserDto {
+  int32 user_id = 1;
+  string user_name = 2;
+  string book_type = 3;
+}
+
+message UserResponse {
+ repeated UserDto users = 1;
+}
+
+message UserRequestById {
+  int32 user_id = 1;
+}
+
+message UserRequestByBookType {
+  string book_type = 1;
+}
+
+
+
+service UserService {
+rpc getUserByUserId(UserRequestById) returns(UserResponse);
+rpc getUserByBookType(UserRequestByBookType) returns(UserResponse);
+}
